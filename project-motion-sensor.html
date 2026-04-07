@@ -15,6 +15,7 @@
       --accent: #5a45e8;
       --accent-hover: #7c6af7;
       --accent-glow: rgba(90, 69, 232, 0.15);
+      --tag-bg: #ebebf8;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -76,6 +77,21 @@
     }
     .project-header h1 span { color: var(--accent); }
 
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 0.75rem;
+    }
+    .tag {
+      background: var(--tag-bg);
+      color: var(--accent);
+      font-size: 0.78rem;
+      font-weight: 600;
+      padding: 0.22rem 0.6rem;
+      border-radius: 5px;
+    }
+
     .project-body {
       display: flex;
       flex-direction: column;
@@ -85,9 +101,29 @@
     .description {
       font-size: 1rem;
       color: var(--text);
-      max-width: 620px;
+      max-width: 680px;
     }
     .description p + p { margin-top: 0.75rem; }
+
+    .btn-demo {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--accent);
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      padding: 0.7rem 1.4rem;
+      border-radius: 8px;
+      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+    }
+    .btn-demo:hover {
+      background: var(--accent-hover);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 20px var(--accent-glow);
+    }
+    .btn-demo svg { width: 18px; height: 18px; flex-shrink: 0; }
 
     /* Media grid */
     .media-grid {
@@ -138,20 +174,31 @@
 <div class="page">
   <div class="project-header">
     <h1>Motion Sensor <span>System</span></h1>
+    <div class="tags">
+      <span class="tag">Raspberry Pi</span>
+      <span class="tag">Python</span>
+      <span class="tag">Linux</span>
+      <span class="tag">LAMP Stack</span>
+      <span class="tag">Git</span>
+    </div>
   </div>
 
   <div class="project-body">
 
     <div class="description">
-      <p>Add your project description here.</p>
+      <p>This project's embedded system focuses on motion detection and image capturing using a Raspberry Pi. The system integrates a Passive Infrared (PIR) sensor to detect motion, a camera for visual data capture, an LED indicator, a buzzer for alerts, and an LCD display. The PIR sensor detects infrared radiation from moving objects to trigger specific software events. The alerts triggered are of varying intensity based on the configurable alert level set.</p>
+      <p>From a software design perspective, the program follows an event-driven structure written in Python, where each component (sensor input, output display, and storage) runs sequentially within a loop, optimized for low latency and efficient I/O handling. The software runs under real-time constraints to process each sensor event accurately, avoiding missed detections or duplicated captures.</p>
     </div>
 
-    <!-- Add images/videos below. Example:
     <div class="media-grid">
-      <div class="media-item"><img src="your-image.jpg" alt="Description"></div>
-      <div class="media-item"><video src="your-video.mp4" controls></video></div>
+      <div class="media-item"><img src="motion_sensor1.png" alt="Motion sensor setup"></div>
+      <div class="media-item"><img src="motion_sensor2.png" alt="Motion sensor in use"></div>
     </div>
-    -->
+
+    <a href="https://youtube.com/shorts/-Fb4q47ekic" target="_blank" rel="noopener" class="btn-demo">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+      Video Demo
+    </a>
 
   </div>
 </div>

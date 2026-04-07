@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projects — Yuan Tsai</title>
+  <style>
+    :root {
+      --bg: #f5f5fa;
+      --bg-card: #ffffff;
+      --bg-nav: rgba(245, 245, 250, 0.85);
+      --border: #e0e0f0;
+      --text: #1a1a2e;
+      --text-muted: #6666aa;
+      --accent: #5a45e8;
+      --accent-hover: #7c6af7;
+      --accent-glow: rgba(90, 69, 232, 0.15);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.6;
+    }
+
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: var(--bg-nav);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2rem;
+      height: 56px;
+    }
+    .nav-back {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .nav-back:hover { color: var(--accent); }
+    .nav-back svg { width: 16px; height: 16px; }
+    .nav-title {
+      font-weight: 700;
+      font-size: 1rem;
+      letter-spacing: -0.01em;
+    }
+    .nav-title span { color: var(--accent); }
+
+    .page {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 96px 2rem 4rem;
+    }
+    .page-header {
+      margin-bottom: 2rem;
+    }
+    .page-header h1 {
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+    .page-header h1 span { color: var(--accent); }
+
+    .projects-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 0.85rem 1.1rem;
+      text-decoration: none;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+    }
+    .card:hover {
+      border-color: var(--accent);
+      box-shadow: 0 3px 16px var(--accent-glow);
+      transform: translateX(3px);
+    }
+    .card span {
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+    .card svg {
+      width: 15px;
+      height: 15px;
+      color: var(--text-muted);
+      flex-shrink: 0;
+      transition: color 0.2s;
+    }
+    .card:hover svg { color: var(--accent); }
+
+    @media (max-width: 600px) {
+      nav { padding: 0 1rem; }
+      .page { padding: 80px 1.25rem 3rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-back">
+    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M10 3L5 8l5 5"/>
+    </svg>
+    Home
+</a>
+  <span class="nav-title">Yuan <span>Tsai</span></span>
+  <div></div>
+</nav>
+
+<div class="page">
+  <div class="page-header">
+    <h1>My <span>Projects</span></h1>
+  </div>
+
+  <div class="projects-list">
+    <a href="project-motion-sensor.html" class="card">
+      <span>Motion Sensor System</span>
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3l5 5-5 5"/></svg>
+    </a>
+    <a href="project-sports-booking.html" class="card">
+      <span>Sports Centre Booking Portal</span>
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3l5 5-5 5"/></svg>
+    </a>
+    <a href="project-binary-tree.html" class="card">
+      <span>Binary Tree Classification</span>
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3l5 5-5 5"/></svg>
+    </a>
+    <a href="project-clinic-simulator.html" class="card">
+      <span>Patient Clinic Simulator</span>
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3l5 5-5 5"/></svg>
+    </a>
+  </div>
+</div>
+
+</body>
+</html>

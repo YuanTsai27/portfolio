@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Motion Sensor Embedded System — Yuan Tsai</title>
+  <title>Embedded Simon+ Memory Game — Yuan Tsai</title>
   <style>
     :root {
       --bg: #f5f5fa;
@@ -104,7 +104,19 @@
       max-width: 680px;
     }
     .description p + p { margin-top: 0.75rem; }
+    .description ul {
+      margin-top: 0.5rem;
+      margin-left: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
 
+    .btn-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
     .btn-demo {
       display: inline-flex;
       align-items: center;
@@ -125,7 +137,6 @@
     }
     .btn-demo svg { width: 18px; height: 18px; flex-shrink: 0; }
 
-    /* Media grid */
     .media-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -173,12 +184,12 @@
 
 <div class="page">
   <div class="project-header">
-    <h1>Motion Sensor <span>Embedded System</span></h1>
+    <h1>Embedded Simon+ <span>Memory Game</span></h1>
     <div class="tags">
-      <span class="tag">Raspberry Pi</span>
-      <span class="tag">Python</span>
-      <span class="tag">Linux</span>
-      <span class="tag">LAMP Stack</span>
+      <span class="tag">C</span>
+      <span class="tag">Arduino Uno</span>
+      <span class="tag">GPIO</span>
+      <span class="tag">Timers</span>
       <span class="tag">Git</span>
     </div>
   </div>
@@ -186,21 +197,27 @@
   <div class="project-body">
 
     <div class="description">
-      <p>This project's embedded system focuses on motion detection and image capturing using a Raspberry Pi. The system integrates a Passive Infrared (PIR) sensor to detect motion, a camera for visual data capture, an LED indicator, a buzzer for alerts, and an LCD display. The PIR sensor detects infrared radiation from moving objects to trigger specific software events. The alerts triggered are of varying intensity based on the configurable alert level set.</p>
-      <p>From a software design perspective, the program follows an event-driven structure written in Python, where each component (sensor input, output display, and storage) runs sequentially within a loop, optimized for low latency and efficient I/O handling. The software runs under real-time constraints to process each sensor event accurately, avoiding missed detections or duplicated captures.</p>
+      <p>Based on the popular memory-based electronic toy Simon, I've built a customized variant on an Arduino Uno board, implementing configurable difficulty levels set by a button at the start. The game presents a randomised and incrementing sequence of LED flashes for the player to replicate using corresponding buttons from memory.</p>
+      <ul>
+        <li><strong>Difficulty 1 Easy:</strong> Normal variant</li>
+        <li><strong>Difficulty 2 Med:</strong> Normal variant, increasing flash speeds with score</li>
+        <li><strong>Difficulty 3 Hard:</strong> Replicate the sequence backwards</li>
+        <li><strong>Difficulty 4 Very Hard:</strong> 2 colours flash simultaneously at very fast speeds (Development in progress)</li>
+      </ul>
+      <p>The low level C-based software design revolves around a finite state machine architecture, implemented using the method of a state transition table, where each cell contains the next state and an action chain to execute upon a specific event trigger. This method is chosen to clearly distinguish the numerous game states and transitions that Simon can carry, as well as being easily adaptable and extensible, facilitating the addition of new difficulty levels.</p>
+      <p>The hardware setup consists of four LEDs and buttons, with built in interrupts and timers leveraged for precise timing for LED sequencing display and timeouts, as well as responsive button handling.</p>
     </div>
 
     <div class="media-grid">
-      <div class="media-item"><img src="motion_sensor1.png" alt="Motion sensor setup"></div>
-      <div class="media-item"><img src="motion_sensor2.png" alt="Motion sensor in use"></div>
+      <div class="media-item"><img src="simon_project.jpg" alt="Simon memory game hardware"></div>
     </div>
 
-    <div style="display:flex; flex-wrap:wrap; gap:0.75rem;">
-      <a href="https://youtube.com/shorts/-Fb4q47ekic" target="_blank" rel="noopener" class="btn-demo">
+    <div class="btn-group">
+      <a href="https://www.youtube.com/shorts/iw3yukco4Ws" target="_blank" rel="noopener" class="btn-demo">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
         Video Demo
       </a>
-      <a href="https://github.com/YuanTsai27/Motion-Sensor-System" target="_blank" rel="noopener" class="btn-demo">
+      <a href="https://github.com/YuanTsai27/Simon-Memory-Game" target="_blank" rel="noopener" class="btn-demo">
         <svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
         GitHub
       </a>

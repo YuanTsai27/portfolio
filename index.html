@@ -129,41 +129,13 @@
 
 
 
-    /* CORNER PHOTOS */
-    .corner-photo {
-      position: fixed;
-      z-index: 50;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.7s ease;
-    }
-    .corner-photo img {
-      width: 240px;
-      height: 240px;
-      object-fit: cover;
-      border-radius: 0;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.18);
-      display: block;
-    }
-    .corner-photo.top-left     { top: 5rem;    left: 2rem;   }
-    .corner-photo.top-right    { top: 5rem;    right: 2rem;  }
-    .corner-photo.bottom-left  { bottom: 2rem; left: 2rem;   }
-    .corner-photo.bottom-right { bottom: 2rem; right: 2rem;  }
-    .corner-photo.visible { opacity: 1; }
-
     @media (max-width: 640px) {
-      .corner-photo img { width: 90px; height: 90px; border-radius: 0; }
-      .corner-photo.top-left, .corner-photo.top-right { top: 1rem; }
-      .corner-photo.top-left, .corner-photo.bottom-left { left: 0.75rem; }
-      .corner-photo.top-right, .corner-photo.bottom-right { right: 0.75rem; }
       .about-hero { padding-bottom: 8vh; }
       .section { padding: 3rem 1.5rem; }
     }
   </style>
 </head>
 <body>
-
-<div class="corner-photo" id="corner-photo"><img id="corner-img" src="" alt=""></div>
 
 <main>
 
@@ -186,86 +158,47 @@
 </main>
 
 <script>
-  // Hobby rotator + corner photos
   const hobbies = ['Badminton Player', 'Outdoor Runner', 'Clumsy Skier', 'Challenger', 'Strawberry Lover'];
-  // corner: top-left, top-right, bottom-left, bottom-right
-  // Mechatronics shown during the featured intro (between last hobby and Badminton)
-  const hobbyPhotos = [
-    { src: 'badminton.jpg',       corner: 'top-right'    },
-    { src: 'outdoor running.jpg', corner: 'bottom-left'  },
-    { src: 'clumsy skier.jpg',    corner: 'top-right'    },
-    { src: 'challenger.jpg',      corner: 'bottom-right' },
-    { src: 'strawberry.jpg',      corner: 'bottom-left'  },
-  ];
-  const mechatronicsPhoto = { src: 'mechatronics.jpg', corner: 'top-left' };
 
   let hobbyIndex = 0;
-  const hobbyEl    = document.getElementById('hobby-rotator');
+  const hobbyEl     = document.getElementById('hobby-rotator');
   const occupationEl = document.querySelector('.occupation');
   const universityEl = document.querySelector('.university');
-  const cornerEl   = document.getElementById('corner-photo');
-  const cornerImg  = document.getElementById('corner-img');
-  const corners    = ['top-left', 'top-right', 'bottom-left', 'bottom-right'];
-
-  function showPhoto(photoObj) {
-    // Fade out current
-    cornerEl.classList.remove('visible');
-    setTimeout(() => {
-      corners.forEach(c => cornerEl.classList.remove(c));
-      cornerImg.src = photoObj.src;
-      cornerEl.classList.add(photoObj.corner);
-      cornerEl.classList.add('visible');
-    }, 400);
-  }
-
-  function hidePhoto() {
-    cornerEl.classList.remove('visible');
-  }
 
   function cycleHobby() {
     hobbyEl.style.opacity = '0';
-    hidePhoto();
     setTimeout(() => {
       hobbyIndex = (hobbyIndex + 1) % hobbies.length;
       if (hobbyIndex === 0) {
-        // Feature the title text + show Mechatronics photo
         occupationEl.classList.add('featured');
         universityEl.classList.add('featured');
-        showPhoto(mechatronicsPhoto);
         setTimeout(() => {
           occupationEl.classList.remove('featured');
           universityEl.classList.remove('featured');
-          hidePhoto();
           setTimeout(() => {
             hobbyEl.textContent = hobbies[hobbyIndex];
             hobbyEl.style.opacity = '1';
-            showPhoto(hobbyPhotos[hobbyIndex]);
             setTimeout(cycleHobby, 3000);
           }, 700);
         }, 2200);
       } else {
         hobbyEl.textContent = hobbies[hobbyIndex];
         hobbyEl.style.opacity = '1';
-        showPhoto(hobbyPhotos[hobbyIndex]);
         setTimeout(cycleHobby, 3000);
       }
     }, 600);
   }
 
-  // Start with Mechatronics featured moment, then begin hobby cycle
   function startSequence() {
     hobbyEl.style.opacity = '0';
     occupationEl.classList.add('featured');
     universityEl.classList.add('featured');
-    showPhoto(mechatronicsPhoto);
     setTimeout(() => {
       occupationEl.classList.remove('featured');
       universityEl.classList.remove('featured');
-      hidePhoto();
       setTimeout(() => {
         hobbyEl.textContent = hobbies[0];
         hobbyEl.style.opacity = '1';
-        showPhoto(hobbyPhotos[0]);
         setTimeout(cycleHobby, 3000);
       }, 700);
     }, 2200);

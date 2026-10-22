@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quadrature Incremental Encoder — Yuan Tsai</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="site-nav">
+  <a href="index.html">About</a>
+  <a href="projects.html" class="active">Projects</a>
+  <a href="cocurriculars.html">Co-Curriculars</a>
+  <a href="contact.html">Contact</a>
+</nav>
+
+<main class="detail">
+  <a href="projects.html" class="back-link">
+    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3L5 8l5 5"/></svg>
+    All projects
+  </a>
+
+  <header class="detail-header">
+    <h1>Quadrature Incremental Encoder</h1>
+    <p class="project-type">Embedded System</p>
+    <div class="tags">
+      <span class="tag">C++</span>
+      <span class="tag">Arduino Uno</span>
+      <span class="tag">CAD</span>
+      <span class="tag">3D Printing</span>
+    </div>
+  </header>
+
+  <div class="project-body">
+
+    <div class="description">
+      <p>Developed as part of a course project, my group designed, built and characterised two optical encoders for a DC motor from scratch:</p>
+      <ul>
+        <li>A quadrature encoder measuring shaft speed and direction.</li>
+        <li>An absolute encoder measuring shaft position.</li>
+      </ul>
+      <p>Both encoders share a single 6-track Gray code disc, then assembled onto the motor rig with infrared LED and phototransistor sensor pairs, connected as a circuit via breadboard and Arduino Uno. This disc and the 2x motor rigs were all designed in Autodesk Inventor CAD and 3D printed, see the photos!</p>
+      <p>I was responsible for the quadrature encoder from start to finish, a type of incremental encoder. It reads the 32-stripe outer track of the disc through two sensor pairs mounted a quarter cycle apart, producing two channels of square waves whose phase relationship gives the direction of rotation. I wrote the C++ firmware as a modular class around the encoder with functions including one that converts the analog sensor readings into logic levels with hysteresis thresholds. A lookup-table decoder then counts every edge on both channels, within 5-second windows then used to calculate the RPM speed. This window duration is also aligned with the motor’s built-in encoder, so the two readings can be compared directly to analyse accuracy, as seen in the video demo!</p>
+      <p>Testing couldn’t have been more important here for driving our design iterations. We continuously tested and retuned the values of the breadboard’s resistors connected to the phototransistors, using voltmeters and raw waveform plottings, to ensure the range swing of the ADC counts between light and dark is big enough to threshold reliably for a clean square wave of both channels.</p>
+      <p><strong>Results:</strong> Our own implementation of the encoder was characterised against the built-in encoder across speeds up to 360 RPM in both directions, achieving under ±2 RPM consistently and reliably.</p>
+    </div>
+
+    <div class="media-grid">
+      <div class="media-item"><img src="QUAD1.jpg" alt="Encoder rig wired to breadboard and Arduino Uno" loading="lazy"></div>
+      <div class="media-item"><img src="QUAD2.jpg" alt="Side view of the 3D-printed motor rig and Gray code disc" loading="lazy"></div>
+      <div class="media-item"><img src="QUAD3.jpg" alt="Front of the rig with sensor mount and phototransistor wiring" loading="lazy"></div>
+      <div class="media-item"><img src="QUAD4.jpg" alt="DC motor, sensor pairs and Arduino Uno from above" loading="lazy"></div>
+    </div>
+
+    <div class="btn-group">
+      <a href="https://youtube.com/shorts/bA0sd_l74z4?feature=share" target="_blank" rel="noopener" class="btn">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+        Video Demo
+      </a>
+      <a href="https://github.com/SAhenriksen/me-306-project-two" target="_blank" rel="noopener" class="btn">
+        <svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+        GitHub
+      </a>
+    </div>
+
+  </div>
+</main>
+
+</body>
+</html>

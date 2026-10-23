@@ -101,16 +101,16 @@ main {
 .socials svg { width: 28px; height: 28px; }
 
 .photo-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  grid-template-rows: repeat(2, minmax(0, 1fr));
+  display: flex;
+  flex-direction: column;
   gap: 0.6rem;
-  min-height: 420px;
+  align-self: center;
 }
-.photo-grid img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+.photo-row { display: flex; gap: 0.6rem; }
+.photo-row img {
+  flex: var(--ar) 1 0;
+  min-width: 0;
+  height: auto;
 }
 
 /* PAGE HEADINGS */
@@ -412,7 +412,6 @@ main {
   main { padding: 0 1rem 3rem; }
   .frame { grid-template-columns: minmax(0, 1fr); min-height: 0; }
   .frame-text { padding: 1.25rem 0.5rem 0.5rem; }
-  .photo-grid { min-height: 0; aspect-ratio: 1; }
   .project-grid { grid-template-columns: minmax(0, 1fr); }
   .media-grid { grid-template-columns: 1fr; }
   .contact-frame { padding: 2.25rem 1.25rem; }

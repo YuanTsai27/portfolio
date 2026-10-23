@@ -38,11 +38,16 @@
       </div>
     </div>
 
+    <!-- --ar is each photo's width / height, so photos in a row share one height and are never cropped -->
     <div class="photo-grid">
-      <img src="mechatronics.jpg" alt="Yuan Tsai headshot" style="object-position: 50% 30%;">
-      <img src="badminton_better.JPG" alt="Yuan playing badminton" style="object-position: 50% 30%;">
-      <img src="outdoor%20running.jpg" alt="Yuan running a race in Auckland" style="object-position: 45% 90%;">
-      <img src="strawberry.jpg" alt="Yuan strawberry picking" style="object-position: 50% 65%;">
+      <div class="photo-row">
+        <img src="mechatronics.jpg" alt="Yuan Tsai headshot" style="--ar: 1;">
+        <img src="badminton_better.JPG" alt="Yuan playing badminton" style="--ar: 0.6662;">
+      </div>
+      <div class="photo-row">
+        <img src="outdoor%20running.jpg" alt="Yuan running a race in Auckland" style="--ar: 0.75;">
+        <img src="strawberry.jpg" alt="Yuan strawberry picking" style="--ar: 0.75;">
+      </div>
     </div>
   </section>
 </main>

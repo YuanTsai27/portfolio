@@ -305,7 +305,7 @@ main {
 .btn:hover { background: var(--accent-hover); transform: translateY(-1px); }
 .btn svg { width: 18px; height: 18px; flex-shrink: 0; }
 
-/* CO-CURRICULARS */
+/* EXTRACURRICULARS */
 .cc { max-width: 940px; }
 .cc-section + .cc-section { margin-top: 4rem; }
 .cc-section-title {
